@@ -3,12 +3,28 @@ import { Box, Button, Container, Heading, Radio, RadioGroup, Stack, Text, useToa
 
 const quizQuestions = {
   science: [
-    { question: "What is the chemical symbol for the element oxygen?", answer: "O" },
-    { question: "How many planets are in the Solar System?", answer: "8" },
+    {
+      question: "What is the chemical symbol for the element oxygen?",
+      answer: "O",
+      options: ["O", "H", "N", "C"],
+    },
+    {
+      question: "How many planets are in the Solar System?",
+      answer: "8",
+      options: ["7", "8", "9", "10"],
+    },
   ],
   history: [
-    { question: "Who was the first President of the United States?", answer: "George Washington" },
-    { question: "In what year did World War II end?", answer: "1945" },
+    {
+      question: "Who was the first President of the United States?",
+      answer: "George Washington",
+      options: ["Abraham Lincoln", "Thomas Jefferson", "George Washington", "John Adams"],
+    },
+    {
+      question: "In what year did World War II end?",
+      answer: "1945",
+      options: ["1945", "1939", "1944", "1950"],
+    },
   ],
 };
 
@@ -54,11 +70,20 @@ const Index = () => {
       </Box>
 
       {quiz && (
-        <Box my={8} p={4} borderWidth="1px" borderRadius="lg">
-          <Text fontSize="xl" fontWeight="bold">
+        <Box my={8} p={4} borderWidth="1px" borderRadius="lg" textAlign="center">
+          <Text fontSize="3xl" fontWeight="bold">
             {quiz.question}
           </Text>
-          <Text mt={2} fontSize="lg">
+          <RadioGroup mt={4}>
+            <Stack direction="column" spacing={3} justify="center">
+              {quiz.options.map((option) => (
+                <Radio key={option} value={option}>
+                  {option}
+                </Radio>
+              ))}
+            </Stack>
+          </RadioGroup>
+          <Text mt={6} fontSize="2xl">
             Answer: {quiz.answer}
           </Text>
         </Box>
